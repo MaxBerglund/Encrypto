@@ -30,12 +30,3 @@ Features:
 2. Encrypt images [MAYBE]
 3. Encrypt PDFs [MAYBE]
 4. Decrypto [MAYBE]
-
-Week 1 milestones:
-1. Permutation functions are functional.
-2. The string divider is functional.
-3. EncryptoMachine is mostly completed.
-
-Week 2 milestones:
-1. EncryptoMachine is functional.
-2. ...
