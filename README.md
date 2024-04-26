@@ -1,17 +1,18 @@
 # Encrypto 1.0
-Encrypto is an encryption tool developed by Max Berglund and Abood Aldaker.
+Encrypto is an encryption tool developed by Max Berglund, Abood Aldaker and Daniel Öhman.
 
 
 
 Planning before starting the project:
 -------------------------------------
-We plan to create a tool that encrypts and decrypts text according to some encyption algorithm, perhaps Data Encryption Standard (DES) which is a symmetric encryption algoritm, which means that is uses the same key for both encryption and decryption. Use of DES begun in 1977, but it is no longer used because of its security vulnerabilities. This makes it a decent size project for us to implement, and perhaps give us the possibility to start learn about realistic ways to crack the encryption without a key. More information on DES: https://www.geeksforgeeks.org/data-encryption-standard-des-set-1/ 
+We plan to create a tool that encrypts and decrypts text according to some encyption algorithm, perhaps Data Encryption Standard (DES) which is a symmetric encryption algoritm, which means that is uses the same key for both encryption and decryption. Use of DES begun in 1977, but it is no longer used because of its security vulnerabilities. This makes it a decent size project for us to implement, and perhaps give us the possibility to start learn about realistic ways to crack the encryption without the key. More information on DES: https://www.geeksforgeeks.org/data-encryption-standard-des-set-1/ . Minimally Viable Product (MVP) (Not to be confused with Most Valuable Player: Abood Aldaker 🙇‍♂️🏆👑) : https://encode-decode.com/des-encrypt-online/
 
 We will probably use Java to create the program, but it could be interesting and useful to use Go for this project because the DES algorithm generates 16 different keys and goes through 16 processes which might be independent of eachother, and could therefore be parallelized.
 
 We have some additional features and goals which we might implement if there is additional time and effort available:
-1. A method to encrypt files of different types instead of just strings, like image or PDF encryption.
-2. An AI bot that attempts to decrypt an encrypted message without access to the key using different cryptanalysis techniques. Inspiration 1: https://blog.daisie.com/cryptanalysis-techniques-beginners-guide-tips/#brute-force-technique 
+1. Make a GUI interface for Encrypto, using some sort of Framework (probably JavaSwing).
+2. A method to encrypt files of different types instead of just strings, like image or PDF encryption.
+3. An AI bot that attempts to decrypt an encrypted message without access to the key using different cryptanalysis techniques. Inspiration 1: https://blog.daisie.com/cryptanalysis-techniques-beginners-guide-tips/#brute-force-technique 
 
 
 
@@ -26,7 +27,8 @@ We plan to divide the project up into a number of branches:
   3. **EncryptoMachine** This will probably be the largest branch, and it will include the main encryption process that runs 16 iterations and performs the key transformation, expansion permutation, S-box permutation, P-box permutation and the XOR&Swap. These will probably be divided into sub-branches for this branch.
 
 Features:
-1. Encrypt text.
-2. Encrypt images [MAYBE]
-3. Encrypt PDFs [MAYBE]
-4. Decrypto [MAYBE]
+1. Encrypt and decrypt text.
+2. Engaging GUI interface [MAYBE]
+3. Encrypt splendid images [MAYBE]
+4. Encrypt mindblowing PDFs [MAYBE]
+5. Decrypto God [MAYBE]
