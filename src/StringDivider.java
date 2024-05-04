@@ -4,7 +4,8 @@ public class StringDivider {
     /**
      * Divides the input text that is to be encrypted into binary blocks that are length 64-bit each.
      * Created for the DES encryption algorithm.
-     * @param input
+     * 
+     * @param input The input string to be encrypted
      * @return An array containing the divided input which consists of 64-bit arrays of binary strings.
      */
     public static String[] divideIntoBlocks(String input)
@@ -34,8 +35,9 @@ public class StringDivider {
 
     /**
      * Fills the remaining part of the block with zeros.
-     * @param binary
-     * @param length
+     * 
+     * @param binary the binary string to fill with zeros
+     * @param length the length of the string to check if its less than 64
      * @return The same initial binary string, but with the empty space at the end filled with zeros.
      */
     private static String fillWithZeros(String binary, int length)

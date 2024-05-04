@@ -73,4 +73,51 @@ public class Converters {
         }
         return binary.toString();
     }
+
+    /**
+     * Converts a binary string to a hex string
+     * 
+     * @param binary the binary string to convert.
+     * @return the hex string represnetation of the binary string.
+     */
+    public static String binary2Hex(String binary) {
+        HashMap<String, String> binToHexMap = new HashMap<>();
+        binToHexMap.put("0000", "0");
+        binToHexMap.put("0001", "1");
+        binToHexMap.put("0010", "2");
+        binToHexMap.put("0011", "3");
+        binToHexMap.put("0100", "4");
+        binToHexMap.put("0101", "5");
+        binToHexMap.put("0110", "6");
+        binToHexMap.put("0111", "7");
+        binToHexMap.put("1000", "8");
+        binToHexMap.put("1001", "9");
+        binToHexMap.put("1010", "a");
+        binToHexMap.put("1011", "b");
+        binToHexMap.put("1100", "c");
+        binToHexMap.put("1101", "d");
+        binToHexMap.put("1110", "e");
+        binToHexMap.put("1111", "f");
+
+        StringBuilder hex = new StringBuilder();
+
+        for (int i = 0; i < binary.length(); i += 4) {
+            String chunk = binary.substring(i, i + 4);
+            hex.append(binToHexMap.get(chunk));
+        }
+
+        return hex.toString();
+    }
+
+
+    public static void main(String[] args) {
+        String binaryString = "10101011";
+    
+        String hexResult = binary2Hex(binaryString);
+    
+        System.out.println("Binary : " + binaryString);
+        System.out.println("Hex test: " + hexResult);
+    }
+    
+
 }
