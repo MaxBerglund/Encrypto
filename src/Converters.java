@@ -59,20 +59,18 @@ public class Converters {
         return binary;
     }
 
-    private static String string2Binary(String input){
-
+    /**
+     * Converts a string into its binary representation.
+     * @param text
+     * @return binary representation of the string.
+     */
+    public static String string2Binary(String text){
         StringBuilder binary = new StringBuilder();
-        
-        for(char character : input.toCharArray()) 
-        {
-
+        for(char character : text.toCharArray()) {
             String binaryChar = Integer.toBinaryString(character);
             String paddedBinaryChar = String.format("%8s", binaryChar).replace(' ', '0');
-
-            binary.append(paddedBinaryChar);
-            
+            binary.append(paddedBinaryChar);  
         }
-
         return binary.toString();
     }
 }

@@ -1,37 +1,16 @@
 public class StringDivider {
+    static Converters converter = new Converters();
 
-    private static String toBinaryString(String input){
-
-        StringBuilder binary = new StringBuilder();
-        
-        for(char character : input.toCharArray()) 
-        {
-
-            String binaryChar = Integer.toBinaryString(character);
-            String paddedBinaryChar = String.format("%8s", binaryChar).replace(' ', '0');
-
-            binary.append(paddedBinaryChar);
-            
-        }
-
-        return binary.toString();
-    }
-
-
-    private static String fillWithZeros(String binary, int length)
-    {
-        while(binary.length() < length)
-        {
-        binary = binary + "0";
-        }
-
-        return binary;
-    }
-
+    /**
+     * Divides the input text that is to be encrypted into binary blocks that are length 64-bit each.
+     * Created for the DES encryption algorithm.
+     * @param input
+     * @return An array containing the divided input which consists of 64-bit arrays of binary strings.
+     */
     public static String[] divideIntoBlocks(String input)
     {
-        //convert
-        String binaryString = toBinaryString(input);
+        // Convert to binary.
+        String binaryString = converter.string2Binary(input);
 
         int nrOfBlocks = (int) Math.ceil(binaryString.length() / 64.0);
 
@@ -53,6 +32,21 @@ public class StringDivider {
 
     }
 
+    /**
+     * Fills the remaining part of the block with zeros.
+     * @param binary
+     * @param length
+     * @return The same initial binary string, but with the empty space at the end filled with zeros.
+     */
+    private static String fillWithZeros(String binary, int length)
+    {
+        while(binary.length() < length)
+        {
+        binary = binary + "0";
+        }
+
+        return binary;
+    }
 
     public static void main(String[] args) {
         
