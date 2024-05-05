@@ -31,7 +31,6 @@ public class Functions {
         System.out.println();
         }
 
-        // WE ARE UNSURE IF THIS XOR WORKS CORRECTLY
         /**
          * The XOR logical operation "Either or..." that is performed on two binary arrays and the results are given as a new binary array.
          * @param array1 consisting of 0:s and/or 1:s.
@@ -39,16 +38,23 @@ public class Functions {
          * @return An array containing the XOR results.
          */
         public int[] xOr(int[] array1, int[] array2) {
+                if (array1.length != array2.length) {
+                    System.out.println("Error: Diffrent length arrays.");
+                    System.exit(0);
+                }
+                if (array1.length == 0 || array2.length == 0) {
+                    System.out.println("Error: Arrays is empty.");
+                    System.exit(0);
+                }
                 int resultSize = array1.length;
                 int[] resultArray = new int[resultSize];
-
-                for (int i = 0; i < resultSize - 1; i++) {
-                        if (array1[i] + array2[i] == 0 || array1[i] + array2[i] == 2) {
-                                resultArray[i] = 1;
-                        } else {
-                                resultArray[i] = 0;
-                        }
+                for (int i = 0; i < resultSize; i++) {
+                    if (array1[i] == array2[i]) {
+                        resultArray[i] = 0;
+                    } else {
+                        resultArray[i] = 1;
+                    }
                 }
                 return resultArray;
-        }
+            }
 }

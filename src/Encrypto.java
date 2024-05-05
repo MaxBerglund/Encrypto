@@ -19,8 +19,9 @@ public class Encrypto {
         Scanner scanner = new Scanner(System.in);
         printWithDelay("Enter message to be encrypted: ", delay);
         String message = scanner.nextLine();
-        printWithDelay("Enter key to use: ", delay);
+        printWithDelay("Enter key to use (must be 8 characters): ", delay);
         String key = scanner.nextLine();
+        // TODO
 
         scanner.close();
     }
