@@ -2,7 +2,8 @@ import java.util.Arrays;
 
 public class ExpansionPermutation {
 
-   // Initialize the Function and Tables objects to import relevant functions and tables
+    // Initialize the Function and Tables objects to import relevant functions and
+    // tables
     Functions function = new Functions();
     Tables table = new Tables();
 
@@ -140,3 +141,4 @@ public class ExpansionPermutation {
      */
 
 }
+
