@@ -2,11 +2,13 @@ import java.util.Scanner;
 
 public class Encrypto {
     private static int delay = 10;
+    static Converters converter = new Converters();
     static KeyTransformer KeyClass = new KeyTransformer();
     static StringDivider StringDiv = new StringDivider();
     static ExpansionPermutation encrypt = new ExpansionPermutation();
 
     public static void main(String[] args) {
+
         printWithDelay("********************************************", delay);
         printWithDelay("**  Welcome to Encrypto System v1.0!     **", delay);
         printWithDelay("**                                       **", delay);
@@ -34,6 +36,11 @@ public class Encrypto {
         int[][] results = new int[blocks.length][64];
         int countBlock = 0;
         int countPos = 0;
+        String[] EncryptedString = new String[blocks.length];
+
+        for (int i = 0; i < blocks.length; i++) {
+            EncryptedString[i] = "";
+        }
 
         // converts the blocks to array of ints and parses them to the encryption
         // function from the ExpansionPermutation class
@@ -41,7 +48,7 @@ public class Encrypto {
             int[] bitArray = new int[64];
 
             for (int i = 0; i < 64; i++) {
-                bitArray[i] = Integer.valueOf(block.charAt(i));
+                bitArray[i] = Character.getNumericValue(block.charAt(i));
             }
 
             int[] encryptedArray = encrypt.encryption(bitArray, KeysArray);
@@ -50,20 +57,21 @@ public class Encrypto {
                 results[countBlock][countPos] = bit;
                 countPos++;
             }
+
             countBlock++;
             countPos = 0;
         }
-
         // chat-gpt generated for loop
-        // print out the results from encrypting the string parsed
-        for (int i = 0; i < results.length; i++) {
-            System.out.println("Encrypted Block " + (i + 1) + ":");
-            for (int j = 0; j < results[i].length; j++) {
-                System.out.print(results[i][j] + " ");
-                if ((j + 1) % 8 == 0) // Newline after every 8 bits
-                    System.out.println();
+        System.out.println("length:" + results[0].length);
+        for (int i = 0; i < results[0].length; i++) {
+            for (int j = 0; j < EncryptedString.length; j++) {
+                EncryptedString[j] += results[j][i];
             }
-            System.out.println();
+        }
+
+        // print out the results from encrypting the string parsed
+        for (String s : EncryptedString) {
+            System.out.println(converter.binary2Hex(s));
         }
 
     }
