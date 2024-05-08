@@ -16,7 +16,7 @@ public class ExpansionPermutation {
      * @return an encrypted array consisting of 0:s and/or 1:s with length 64
      */
     public int[] encryption(int[] array, int[][] KeysArray) {
-
+        
         int[] initial_permuted_array = function.permute(array, table.IP);
 
         // splitting

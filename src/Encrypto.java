@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Encrypto {
-    private static int delay = 10;
+    private static int delay = 1;
     static Converters converter = new Converters();
     static KeyTransformer KeyClass = new KeyTransformer();
     static StringDivider StringDiv = new StringDivider();
@@ -18,17 +18,21 @@ public class Encrypto {
         printWithDelay("**  Spinning up rusty hard drives...     **", delay);
         printWithDelay("**                                       **", delay);
         printWithDelay("**  System booting. Please wait...       **", delay);
-        printWithDelay("********************************************", 50);
+        printWithDelay("********************************************", 5);
         printWithDelay("**  System ready. Encrypto welcomes you! **", delay);
 
-        Scanner scanner = new Scanner(System.in);
+        /*Scanner scanner = new Scanner(System.in);
         printWithDelay("Enter message to be encrypted: ", delay);
         String message = scanner.nextLine();
         printWithDelay("Enter key to use (must be 8 characters): ", delay);
         String key = scanner.nextLine();
-        // TODO
+        scanner.close();*/
 
-        scanner.close();
+        // The following strings are the message and the key from the superb tutorial video (https://www.youtube.com/watch?v=-j80aA8q_IQ), used for testing this file.
+        String message = "#Eg«Íï"; // Taken from 20:58 in the video. 0000 0001 0010 0011 0100 0101 0110 0111 1000 1001 1010 1011 1100 1101 1110 1111
+        String key = "4Wy¼ßñ"; // Taken from 7:24 in the video.
+        // This message and key should produce the following hexadecimal ciphertext:
+        // 85E813540F0AB405, taken from 48:31 in the video.
 
         // initilize som variables to convert blocks to array of ints of length 64
         int[][] KeysArray = KeyClass.keyTransformer(key);
