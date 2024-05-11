@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Encrypto {
-    private static int delay = 1;
+    private static int delay = 5;
     static Converters converter = new Converters();
     static KeyTransformer KeyClass = new KeyTransformer();
     static StringDivider StringDiv = new StringDivider();
@@ -18,21 +18,22 @@ public class Encrypto {
         printWithDelay("**  Spinning up rusty hard drives...     **", delay);
         printWithDelay("**                                       **", delay);
         printWithDelay("**  System booting. Please wait...       **", delay);
-        printWithDelay("********************************************", 5);
+        printWithDelay("********************************************", 10);
         printWithDelay("**  System ready. Encrypto welcomes you! **", delay);
 
-        /*Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         printWithDelay("Enter message to be encrypted: ", delay);
         String message = scanner.nextLine();
         printWithDelay("Enter key to use (must be 8 characters): ", delay);
         String key = scanner.nextLine();
-        scanner.close();*/
+        scanner.close();
 
         // The following strings are the message and the key from the superb tutorial video (https://www.youtube.com/watch?v=-j80aA8q_IQ), used for testing this file.
-        String message = "#Eg«Íï"; // Taken from 20:58 in the video. 0000 0001 0010 0011 0100 0101 0110 0111 1000 1001 1010 1011 1100 1101 1110 1111
-        String key = "4Wy¼ßñ"; // Taken from 7:24 in the video.
+        // String message = "#Eg«Íï"; // Taken from 20:58 in the video. 0000 0001 0010 0011 0100 0101 0110 0111 1000 1001 1010 1011 1100 1101 1110 1111
+        // String key = "4Wy¼ßñ"; // Taken from 7:24 in the video.
         // This message and key should produce the following hexadecimal ciphertext:
         // 85E813540F0AB405, taken from 48:31 in the video.
+        // This does though not work for our program, and we assume that is because this message and key are using symbols that are not compatible with out program.
 
         // initilize som variables to convert blocks to array of ints of length 64
         int[][] KeysArray = KeyClass.keyTransformer(key);
@@ -65,8 +66,9 @@ public class Encrypto {
             countBlock++;
             countPos = 0;
         }
+        
         // chat-gpt generated for loop
-        System.out.println("length:" + results[0].length);
+        System.out.println();
         for (int i = 0; i < results[0].length; i++) {
             for (int j = 0; j < EncryptedString.length; j++) {
                 EncryptedString[j] += results[j][i];
@@ -74,10 +76,11 @@ public class Encrypto {
         }
 
         // print out the results from encrypting the string parsed
+        System.out.println("Ciphertext in hexadecimal format: ");
         for (String s : EncryptedString) {
-            System.out.println(converter.binary2Hex(s));
+            System.out.print(converter.binary2Hex(s));
         }
-
+        System.out.println();
     }
 
     private static void printWithDelay(String data, int delay) {
