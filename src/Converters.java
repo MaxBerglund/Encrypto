@@ -1,4 +1,7 @@
 import java.util.HashMap;
+import java.awt.*;
+import java.awt.image.*;
+import java.io.*;
 
 /**
  * This file is used to store all convertion methods that are used to convert a message to hexadecimal or to binary, and such.
@@ -109,21 +112,65 @@ public class Converters {
         return hex.toString();
     }
 
+    /**
+     * Converts a jpeg image into a binary int array.
+     * @param url the url of the image, must end with ".jpeg".
+     * @return the binary representation of the image.
+     */
+    public static int[] image2Binary(String url) {
+        url = url.toLowerCase();
+		Image image = Toolkit.getDefaultToolkit().getImage(url);
+        PixelGrabber grabber = new PixelGrabber(image, 0, 0, 450, 450, false);
+        int width = grabber.getWidth();
+        int heigth = grabber.getHeight();
+        int[] binary = new int[width*heigth];
+        
+		try {
+			if (grabber.grabPixels()) {
 
-    public static void main(String[] args) {
-        String binaryString = "10101011";
-        String binaryString2 = "0000000100100011010001010110011110001001101010111100110111101111";
-    
-        String hexResult = binary2Hex(binaryString);
-        String hexResult2 = binary2Hex(binaryString2);
+				int[] data = (int[]) grabber.getPixels();
+				int loopstatus = 1;
+				int output;
 
-    
-        System.out.println("Binary: " + binaryString);
-        System.out.println("Hex test: " + hexResult);
+				// default = 12500000.threshold value = 0 -> 99999999 (**currently not sure about the highest value...). **tips: adjust for every million first((+-)10000000)
+				int threshold = 12500000;
 
-        System.out.println("Binary 2: " + binaryString2);
-        System.out.println("Hex test 2: " + hexResult2);
+				for (int i = 0; i < width * heigth; i++) {
+					// white
+					if (data[i] == 16777215) {
+						output = 1;
+					}
+					// black
+					else if (data[i] == 0) {
+						output = 0;
+					}
+					// value that are not white/black.
+					else if (data[i] < threshold) {
+						output = 0;
+					} else {
+						output = 1;
+					}
+
+					binary[i] = output;
+
+					if (width == (i + 1) / loopstatus) {
+						loopstatus++;
+					}
+				}
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+        
+        return binary;
     }
     
+    public static void main(String[] args) {
+        int[] imageBinary = image2Binary("nature_black_white.jpeg");
+        for (int i = 0; i < imageBinary.length; i++) {
+            System.out.print(imageBinary[i]);
+        }
+    }
 
 }
