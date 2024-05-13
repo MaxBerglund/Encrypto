@@ -113,20 +113,24 @@ public class Converters {
     }
 
     /**
-     * Converts a jpeg image into a binary int array.
+     * Converts a jpeg image into a binary int array and stores it as a binary txt file.
+     * Taken from https://github.com/mohdazmeer/convert-image-to-binary/blob/master/src/my/java/demo/Convert.java
      * @param url the url of the image, must end with ".jpeg".
+     * @param width the width of pixels of the image.
+     * @param heigth the height of pixels of the image.
      * @return the binary representation of the image.
      */
-    public static int[] image2Binary(String url) {
+    public static int[] image2Binary(String url, int width, int heigth) {
         url = url.toLowerCase();
 		Image image = Toolkit.getDefaultToolkit().getImage(url);
-        PixelGrabber grabber = new PixelGrabber(image, 0, 0, 450, 450, false);
-        int width = grabber.getWidth();
-        int heigth = grabber.getHeight();
+        PixelGrabber grabber = new PixelGrabber(image, 0, 0, width, heigth, false);
         int[] binary = new int[width*heigth];
         
 		try {
-			if (grabber.grabPixels()) {
+			String outfile = url.replace(".jpeg", ".txt");
+			PrintWriter out = new PrintWriter(outfile);
+            
+            if (grabber.grabPixels()) {
 
 				int[] data = (int[]) grabber.getPixels();
 				int loopstatus = 1;
@@ -151,6 +155,7 @@ public class Converters {
 						output = 1;
 					}
 
+                    out.print(output);
 					binary[i] = output;
 
 					if (width == (i + 1) / loopstatus) {
@@ -158,7 +163,7 @@ public class Converters {
 					}
 				}
 			}
-
+            out.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -167,10 +172,21 @@ public class Converters {
     }
     
     public static void main(String[] args) {
-        int[] imageBinary = image2Binary("nature_black_white.jpeg");
+        // The following code snippets converts each of the pictures into txt files (and int arrays) containing the binary representation of the image.
+        
+        /*
+        int[] imageBinary = image2Binary("checkered.jpeg", 474, 232);
         for (int i = 0; i < imageBinary.length; i++) {
             System.out.print(imageBinary[i]);
         }
+        */
+
+        /*
+        int[] imageBinary = image2Binary("nature_black_white.jpeg", 450, 450);
+        for (int i = 0; i < imageBinary.length; i++) {
+            System.out.print(imageBinary[i]);
+        }
+        */
     }
 
 }
