@@ -2,14 +2,18 @@ import java.util.Scanner;
 
 public class Encrypto {
     private static int delay = 5;
+    static FormatingResults formatingResults = new FormatingResults();
     static Converters converter = new Converters();
-    static KeyTransformer KeyClass = new KeyTransformer();
-    static StringDivider StringDiv = new StringDivider();
-    static ExpansionPermutation encrypt = new ExpansionPermutation();
-    static Decryption decryption = new Decryption();
+    static Scanner scanner = new Scanner(System.in);
+    static String choose = "";
+    // color code from
+    // https://www.tutorialspoint.com/how-to-print-colored-text-in-java-console#:~:text=One%20must%20add%20the%20relevant,displayed%20in%20the%20standard%20color.
+    static String RESET = "\u001B[0m";
+    static String RED = "\u001B[31m";
+    static String GREEN = "\u001B[32m";
+    static String YELLOW = "\u001B[33m";
 
-    public static void main(String[] args) {
-
+    private void start() {
         printWithDelay("********************************************", delay);
         printWithDelay("**  Welcome to Encrypto System v1.0!     **", delay);
         printWithDelay("**                                       **", delay);
@@ -21,13 +25,59 @@ public class Encrypto {
         printWithDelay("**  System booting. Please wait...       **", delay);
         printWithDelay("********************************************", 10);
         printWithDelay("**  System ready. Encrypto welcomes you! **", delay);
+    }
 
-        Scanner scanner = new Scanner(System.in);
-        printWithDelay("Enter message to be encrypted: ", delay);
-        String message = scanner.nextLine();
-        printWithDelay("Enter key to use (must be 8 characters): ", delay);
-        String key = scanner.nextLine();
-        scanner.close();
+    private void question() {
+        printWithDelay(
+                "Encrypt or decrypt message, type " + GREEN + "de" + RESET + " for decryption, type " + GREEN + "en"
+                        + RESET + " for encryption. Type  " + GREEN + "exit" + RESET + " to exit: ",
+                delay);
+        choose = scanner.nextLine();
+    }
+
+    public static void main(String[] args) {
+
+        Encrypto encry = new Encrypto();
+
+        encry.start();
+
+        while (1 > 0) {
+            encry.question();
+
+            if (choose.equals("en")) {
+                printWithDelay(
+                        "Enter " + GREEN + "String" + RESET + " message to be " + YELLOW + "encrypted" + RESET + ": ",
+                        delay);
+                String message = scanner.nextLine();
+                printWithDelay(
+                        "Enter " + GREEN + "Key" + RESET + " to use " + RED + "(must be 8 characters)" + RESET + ": ",
+                        delay);
+                String key = scanner.nextLine();
+                String encrypted = formatingResults.format(key, message, true);
+                System.out.println("Encrypted: " + encrypted);
+
+            } else if (choose.equals("de")) {
+                printWithDelay(
+                        "Enter " + GREEN + "Hex" + RESET + " message to be " + YELLOW + "decrypted" + RESET + ": ",
+                        delay);
+                String message = scanner.nextLine();
+                printWithDelay(
+                        "Enter " + GREEN + "Key" + RESET + " to use " + RED + "(must be 8 characters)" + RESET + ": ",
+                        delay);
+                String key = scanner.nextLine();
+                String decrypted = formatingResults.format(key, message, false);
+                System.out.println("Decrypted: " + decrypted);
+
+            } else if (choose.equals("exit")) {
+                scanner.close();
+                System.exit(0);
+            }
+
+            else {
+                System.out.println(RED + "typo?" + RESET);
+
+            }
+        }
 
         // The following strings are the message and the key from the superb tutorial
         // video (https://www.youtube.com/watch?v=-j80aA8q_IQ), used for testing this
@@ -41,48 +91,42 @@ public class Encrypto {
         // message and key are using symbols that are not compatible with out program.
 
         // initilize som variables to convert blocks to array of ints of length 64
-        int[][] KeysArray = KeyClass.keyTransformer(key);
-        String[] blocks = StringDiv.divideIntoBlocks(message);
-        int countBlock = 0;
-        String[] EncryptedString = new String[blocks.length];
-        String[] DecryptedString = new String[blocks.length];
 
-        for (int i = 0; i < blocks.length; i++) {
-            EncryptedString[i] = "";
-        }
+        /*
+         * tests
+         * String key1 = "abcdefgh";
+         * String stringMessage =
+         * "I am well aware that my cat is super large with tiny little legs";
+         * 
+         * String hexMessage =
+         * "d4e33bbf95dca8fc9d4e50254157d5a162d746151dcc208f4faeb24f9803ecb064d2d2788d325da67b42027771b7355007cfecccafb1af16a93e7731dc60d7b7";
+         * 
+         * String encrypted = formatingResults.format(key1, stringMessage, true);
+         * 
+         * String decryptedDirect = formatingResults.format(key1, encrypted, false);
+         * 
+         * String decrypted = formatingResults.format(key1, hexMessage, false);
+         * 
+         * System.out.println("Decrypted: " + decrypted);
+         * 
+         * System.out.println("Decrypted Direct: " + decryptedDirect);
+         * 
+         * System.out.println("Encrypted: " + encrypted);
+         */
 
-        for (int i = 0; i < blocks.length; i++) {
-            DecryptedString[i] = "";
-        }
-
-        // converts the blocks to array of ints and parses them to the encryption
-        // function from the ExpansionPermutation class
-        for (String block : blocks) {
-            String binaryString = "";
-            int[] bitArray = new int[64];
-
-            for (int i = 0; i < 64; i++) {
-                bitArray[i] = Character.getNumericValue(block.charAt(i));
-            }
-
-            int[] encryptedArray = encrypt.encryption(bitArray, KeysArray);
-            int[] decryptedArray = decryption.decryption(encryptedArray, KeysArray);
-
-            for (int bit : encryptedArray) {
-                binaryString += bit;
-            }
-            EncryptedString[countBlock] = converter.binary2Hex(binaryString);
-
-            binaryString = "";
-            for (int bit : decryptedArray) {
-                binaryString += bit;
-            }
-            DecryptedString[countBlock] = converter.binary2Hex(binaryString);
-            countBlock++;
-        }
-        System.out.println("Encrypted: " + EncryptedString[0]);
-        System.out.println("Decrypted: " + DecryptedString[0]);
-
+        /*
+         * for (String blocks : encrypted){
+         * System.out.print(blocks);
+         * }
+         * 
+         * System.out.println();
+         * 
+         * System.out.println("Decrypted: ");
+         * 
+         * for (String blocks : decrypted){
+         * System.out.print(blocks);
+         * }
+         */
     }
 
     private static void printWithDelay(String data, int delay) {
