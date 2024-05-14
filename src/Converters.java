@@ -81,7 +81,7 @@ public class Converters {
      * Converts a binary string to a hex string
      * 
      * @param binary the binary string to convert.
-     * @return the hex string represnetation of the binary string.
+     * @return the hex string representation of the binary string.
      */
     public static String binary2Hex(String binary) {
         HashMap<String, String> binToHexMap = new HashMap<>();

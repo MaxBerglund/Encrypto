@@ -19,7 +19,7 @@ public class Encrypto {
         printWithDelay("**  Spinning up rusty hard drives...     **", delay);
         printWithDelay("**                                       **", delay);
         printWithDelay("**  System booting. Please wait...       **", delay);
-        printWithDelay("********************************************", 10);
+        printWithDelay("********************************************", delay*2);
         printWithDelay("**  System ready. Encrypto welcomes you! **", delay);
 
         Scanner scanner = new Scanner(System.in);
@@ -85,6 +85,11 @@ public class Encrypto {
 
     }
 
+    /**
+     * Prints a message with a given delay for each character.
+     * @param data the message to be printed.
+     * @param delay the delay in milliseconds to be added for each character.
+     */
     private static void printWithDelay(String data, int delay) {
         for (char character : data.toCharArray()) {
             System.out.print(character);
