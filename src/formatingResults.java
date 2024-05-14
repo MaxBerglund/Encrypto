@@ -1,4 +1,4 @@
-public class FormatingResults {
+public class formatingResults {
     static Converters converter = new Converters();
     static KeyTransformer KeyClass = new KeyTransformer();
     static StringDivider StringDiv = new StringDivider();
