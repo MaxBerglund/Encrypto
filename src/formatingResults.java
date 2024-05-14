@@ -42,8 +42,6 @@ public class formatingResults {
             ResultString[i] = "";
         }
 
-        int countBlock = 0;
-
         // converts the blocks to array of ints and parses them to the encryption
         // function from the ExpansionPermutation class
         for (String block : blocks) {
@@ -69,9 +67,7 @@ public class formatingResults {
             for (int bit : converted) {
                 binaryString += bit;
             }
-            // ResultString[countBlock] = converter.binary2Hex(binaryString);
             result += binaryString;
-            countBlock++;
 
         }
         String endResult;
