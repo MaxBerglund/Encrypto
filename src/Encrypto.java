@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Encrypto {
     private static int delay = 5;
-    static FormatingResults formatingResults = new FormatingResults();
+    static formatingResults formatingResults = new formatingResults();
     static Converters converter = new Converters();
     static Scanner scanner = new Scanner(System.in);
     static String choose = "";
