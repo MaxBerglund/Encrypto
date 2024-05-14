@@ -1,12 +1,15 @@
 import java.util.HashMap;
 
 /**
- * This file is used to store all convertion methods that are used to convert a message to hexadecimal or to binary, and such.
+ * This file is used to store all convertion methods that are used to convert a
+ * message to hexadecimal or to binary, and such.
  */
 public class Converters {
 
     /**
-     * Converts a string into its hexadecimal representation using ascii values for its characters.
+     * Converts a string into its hexadecimal representation using ascii values for
+     * its characters.
+     * 
      * @param text
      * @return hexadecimal representation of text.
      */
@@ -14,7 +17,7 @@ public class Converters {
         String hex = "";
         for (int i = 0; i < text.length(); i++) {
             char ch = text.charAt(i);
-            int asciiOfCh = (int)ch;
+            int asciiOfCh = (int) ch;
             String part = Integer.toHexString(asciiOfCh);
             hex += part;
         }
@@ -23,6 +26,7 @@ public class Converters {
 
     /**
      * Converts a hexadecimal string into its binary representation.
+     * 
      * @param hex
      * @return binary representation of the hex.
      */
@@ -55,23 +59,45 @@ public class Converters {
                 binary = "Invalid Hexadecimal String";
                 return binary;
             }
-        }   
+        }
         return binary;
     }
 
     /**
      * Converts a string into its binary representation.
+     * 
      * @param text
      * @return binary representation of the string.
      */
-    public static String string2Binary(String text){
+    public static String string2Binary(String text) {
         StringBuilder binary = new StringBuilder();
-        for(char character : text.toCharArray()) {
+        for (char character : text.toCharArray()) {
             String binaryChar = Integer.toBinaryString(character);
             String paddedBinaryChar = String.format("%8s", binaryChar).replace(' ', '0');
-            binary.append(paddedBinaryChar);  
+            binary.append(paddedBinaryChar);
         }
         return binary.toString();
+    }
+
+    // code snippet copied from
+    // https://www.reddit.com/r/learnjava/comments/88rbzh/convert_binary_to_string_in_java/
+    /**
+     * this method converts a binary string to a string of charachers
+     * 
+     * @param letters a binary string (a string of 1s and 0s)
+     * @return a string consiting of charachers
+     */
+    public static String binary2String(String letters) {
+        String s = "";
+
+        for (int index = 0; index < letters.length(); index += 8) {
+            String temp = letters.substring(index, index + 8);
+            int num = Integer.parseInt(temp, 2);
+            char letter = (char) num;
+            s = s + letter;
+        }
+
+        return s;
     }
 
     /**
@@ -109,21 +135,18 @@ public class Converters {
         return hex.toString();
     }
 
-
     public static void main(String[] args) {
         String binaryString = "10101011";
         String binaryString2 = "0000000100100011010001010110011110001001101010111100110111101111";
-    
+
         String hexResult = binary2Hex(binaryString);
         String hexResult2 = binary2Hex(binaryString2);
 
-    
         System.out.println("Binary: " + binaryString);
         System.out.println("Hex test: " + hexResult);
 
         System.out.println("Binary 2: " + binaryString2);
         System.out.println("Hex test 2: " + hexResult2);
     }
-    
 
 }
