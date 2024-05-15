@@ -76,6 +76,27 @@ public class Converters {
         }
         return binary.toString();
     }
+	
+	// code snippet copied from
+    // https://www.reddit.com/r/learnjava/comments/88rbzh/convert_binary_to_string_in_java/
+    /**
+     * this method converts a binary string to a string of charachers
+     * 
+     * @param letters a binary string (a string of 1s and 0s)
+     * @return a string consiting of charachers
+     */
+    public static String binary2String(String letters) {
+        String s = "";
+
+        for (int index = 0; index < letters.length(); index += 8) {
+            String temp = letters.substring(index, index + 8);
+            int num = Integer.parseInt(temp, 2);
+            char letter = (char) num;
+            s = s + letter;
+        }
+
+        return s;
+    }
 
     /**
      * Converts a binary string to a hex string
