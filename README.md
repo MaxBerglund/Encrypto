@@ -1,6 +1,9 @@
 # Encrypto 1.0
 Encrypto is an encryption tool developed in Java by Max Berglund, Abood Aldaker and Daniel Öhman.
 
+**How to use:**
+To use the main Encrypto interface, run the Main.java file located in the src folder. To use another implementation with a terminal interface, run Encrypto.java. If you want to use Encrypto in order to encrypt images, run ImageEncrypto.java.
+
 
 
 Overview:
