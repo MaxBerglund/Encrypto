@@ -134,19 +134,4 @@ public class Converters {
 
         return hex.toString();
     }
-
-    public static void main(String[] args) {
-        String binaryString = "10101011";
-        String binaryString2 = "0000000100100011010001010110011110001001101010111100110111101111";
-
-        String hexResult = binary2Hex(binaryString);
-        String hexResult2 = binary2Hex(binaryString2);
-
-        System.out.println("Binary: " + binaryString);
-        System.out.println("Hex test: " + hexResult);
-
-        System.out.println("Binary 2: " + binaryString2);
-        System.out.println("Hex test 2: " + hexResult2);
-    }
-
 }
