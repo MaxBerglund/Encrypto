@@ -34,7 +34,7 @@ public class StringDivider {
     }
 
     /**
-     * Fills the remaining part of the block with zeros.
+     * Fills the remaining part of the block with zeros. This might not be an official part of the DES encryption algorithm, but we think that this seems reasonable.
      * 
      * @param binary the binary string to fill with zeros
      * @param length the length of the string to check if its less than 64

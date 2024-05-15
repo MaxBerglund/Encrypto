@@ -10,7 +10,7 @@ public class Functions {
          * @param permutationTable The permutation table that defins the output 
          * @return The permuted array
          */
-        public int[] permute(int[] input, int[] permutationTable) {
+        public static int[] permute(int[] input, int[] permutationTable) {
         int[] output = new int[permutationTable.length];
         for(int i = 0;i < permutationTable.length;i++) {
                 output[i] = input[permutationTable[i]- 1];
@@ -37,7 +37,7 @@ public class Functions {
          * @param array2 consisting of 0:s and/or 1:s.
          * @return An array containing the XOR results.
          */
-        public int[] xOr(int[] array1, int[] array2) {
+        public static int[] xOr(int[] array1, int[] array2) {
                 if (array1.length != array2.length) {
                     System.out.println("Error: Diffrent length arrays.");
                     System.exit(0);
@@ -57,4 +57,16 @@ public class Functions {
                 }
                 return resultArray;
             }
+
+        public static void main(String[] args) {
+            
+            // Test for permute()
+            Tables table = new Tables();
+            int[] binary = {0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1};
+            int[] permuted = permute(binary, table.IP);
+            for (int i = 0; i < permuted.length; i++) {
+                System.out.print(permuted[i]);
+            }
+            // Should be: "1100110000000000110011001111111111110000101010101111000010101010"
+        }
 }

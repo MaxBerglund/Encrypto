@@ -1,4 +1,7 @@
 import java.util.HashMap;
+import java.awt.*;
+import java.awt.image.*;
+import java.io.*;
 
 /**
  * This file is used to store all convertion methods that are used to convert a message to hexadecimal or to binary, and such.
@@ -78,7 +81,7 @@ public class Converters {
      * Converts a binary string to a hex string
      * 
      * @param binary the binary string to convert.
-     * @return the hex string represnetation of the binary string.
+     * @return the hex string representation of the binary string.
      */
     public static String binary2Hex(String binary) {
         HashMap<String, String> binToHexMap = new HashMap<>();
@@ -109,15 +112,81 @@ public class Converters {
         return hex.toString();
     }
 
+    /**
+     * Converts a jpeg image into a binary int array and stores it as a binary txt file.
+     * Taken from https://github.com/mohdazmeer/convert-image-to-binary/blob/master/src/my/java/demo/Convert.java
+     * @param url the url of the image, must end with ".jpeg".
+     * @param width the width of pixels of the image.
+     * @param heigth the height of pixels of the image.
+     * @return the binary representation of the image.
+     */
+    public static int[] image2Binary(String url, int width, int heigth) {
+        url = url.toLowerCase();
+		Image image = Toolkit.getDefaultToolkit().getImage(url);
+        PixelGrabber grabber = new PixelGrabber(image, 0, 0, width, heigth, false);
+        int[] binary = new int[width*heigth];
+        
+		try {
+			String outfile = url.replace(".jpeg", ".txt");
+			PrintWriter out = new PrintWriter(outfile);
+            
+            if (grabber.grabPixels()) {
 
-    public static void main(String[] args) {
-        String binaryString = "10101011";
-    
-        String hexResult = binary2Hex(binaryString);
-    
-        System.out.println("Binary : " + binaryString);
-        System.out.println("Hex test: " + hexResult);
+				int[] data = (int[]) grabber.getPixels();
+				int loopstatus = 1;
+				int output;
+
+				// default = 12500000.threshold value = 0 -> 99999999 (**currently not sure about the highest value...). **tips: adjust for every million first((+-)10000000)
+				int threshold = 12500000;
+
+				for (int i = 0; i < width * heigth; i++) {
+					// white
+					if (data[i] == 16777215) {
+						output = 1;
+					}
+					// black
+					else if (data[i] == 0) {
+						output = 0;
+					}
+					// value that are not white/black.
+					else if (data[i] < threshold) {
+						output = 0;
+					} else {
+						output = 1;
+					}
+
+                    out.print(output);
+					binary[i] = output;
+
+					if (width == (i + 1) / loopstatus) {
+						loopstatus++;
+					}
+				}
+			}
+            out.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+        
+        return binary;
     }
     
+    public static void main(String[] args) {
+        // The following code snippets converts each of the pictures into txt files (and int arrays) containing the binary representation of the image.
+        
+        /*
+        int[] imageBinary = image2Binary("checkered.jpeg", 474, 232);
+        for (int i = 0; i < imageBinary.length; i++) {
+            System.out.print(imageBinary[i]);
+        }
+        */
+
+        /*
+        int[] imageBinary = image2Binary("nature_black_white.jpeg", 450, 450);
+        for (int i = 0; i < imageBinary.length; i++) {
+            System.out.print(imageBinary[i]);
+        }
+        */
+    }
 
 }
