@@ -38,9 +38,6 @@ public class EncryptoGUI {
         JButton encryptImageButton = new JButton("Encrypt Image");
         panel.add(encryptImageButton, gbc);
 
-        JButton decryptImageButton = new JButton("Decrypt Image");
-        panel.add(decryptImageButton, gbc);
-
         JButton exitButton = new JButton("Exit");
         panel.add(exitButton, gbc);
 
@@ -59,12 +56,6 @@ public class EncryptoGUI {
         encryptImageButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new EncryptImageWindow();
-            }
-        });
-
-        decryptImageButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                new DecryptImageWindow();
             }
         });
 
