@@ -3,6 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 class DecryptTextWindow {
+    //constructor
     DecryptTextWindow() {
         JFrame frame = new JFrame("Decrypt Message");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -15,6 +16,11 @@ class DecryptTextWindow {
         frame.setVisible(true);
     }
 
+    /**
+     * places the component on the main panel
+     * 
+     * @param panel the main panel which components are placed
+     */
     private void placeComponents(JPanel panel) {
         panel.setLayout(null);
 
@@ -48,6 +54,7 @@ class DecryptTextWindow {
         scrollPaneResult.setBounds(10, 190, 450, 150);
         panel.add(scrollPaneResult);
 
+        //decrypt button actionListener / functionality
         decryptButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String encryptedMessage = userText.getText();

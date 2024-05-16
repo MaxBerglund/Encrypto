@@ -2,6 +2,7 @@ import java.util.Scanner;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import java.io.File;
+import java.io.IOException;
 
 public class ImageEncrypto {
     
@@ -11,6 +12,49 @@ public class ImageEncrypto {
     static StringDivider StringDiv = new StringDivider();
     static ExpansionPermutation encrypt = new ExpansionPermutation();
     static Decryption decryption = new Decryption();
+
+    /**
+     * Encrypts an image file with a specified key.
+     *
+     * @param filePath The path to the image file to encrypt.
+     * @param key      The encryption key (must be 8 characters).
+     * @return The encrypted cipher text.
+     */
+    public static String encryptImage(String filePath, String key) {
+        int width = 0;
+        int height = 0;
+        try {
+            BufferedImage bimg = ImageIO.read(new File(filePath));
+            width = bimg.getWidth();
+            height = bimg.getHeight();
+        } catch (IOException e) {
+            System.out.println("Error when reading image: " + e);
+            return null;
+        }
+
+        int[] binaryImage = converter.image2Binary(filePath, width, height);
+        int[][] KeysArray = KeyClass.keyTransformer(key);
+        int[][] binaryBlocks = divideBinaryIntoBlocks(binaryImage);
+
+        StringBuilder EncryptedString = new StringBuilder();
+        int[] block = new int[64];
+
+        for (int[] binaryBlock : binaryBlocks) {
+            System.arraycopy(binaryBlock, 0, block, 0, block.length);
+            block = encrypt.encryption(block, KeysArray);
+            for (int digit : block) {
+                EncryptedString.append(digit);
+            }
+        }
+
+        String encryptedHex = converter.binary2Hex(EncryptedString.toString());
+        String result = "Picture width: " + width + "\n" + "Picture height: " + height + "\n" + "Length of cipher text: " + encryptedHex.length() + "\n" + "Cipher text: " + encryptedHex;
+
+
+        // return converter.binary2Hex(EncryptedString.toString());
+        return result;
+        
+    }
 
     public static void main(String[] args) {
         printWithDelay("********************************************", delay);
@@ -41,7 +85,7 @@ public class ImageEncrypto {
             width = bimg.getWidth();
             heigth = bimg.getHeight();
         } catch (Exception e) {
-            System.out.println("Error when reading image: " + e);
+            System.out.println("Error when readin33g image: " + e);
             System.exit(0);
         }
         System.out.println("Picture width: " + width);
@@ -118,4 +162,5 @@ public class ImageEncrypto {
         }
         System.out.println();
     }
+
 }

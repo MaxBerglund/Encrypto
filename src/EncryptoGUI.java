@@ -24,7 +24,7 @@ public class EncryptoGUI {
     private static void placeComponents(JPanel panel) {
         panel.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(10, 10, 10, 10); // Add padding around components
+        gbc.insets = new Insets(10, 10, 10, 10); // padding
         gbc.gridx = 0;
         gbc.gridy = GridBagConstraints.RELATIVE;
         gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -56,17 +56,17 @@ public class EncryptoGUI {
             }
         });
 
-        // encryptImageButton.addActionListener(new ActionListener() {
-        //     public void actionPerformed(ActionEvent e) {
-        //         new EncryptImageWindow();
-        //     }
-        // });
+        encryptImageButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new EncryptImageWindow();
+            }
+        });
 
-        // decryptImageButton.addActionListener(new ActionListener() {
-        //     public void actionPerformed(ActionEvent e) {
-        //         new DecryptImageWindow();
-        //     }
-        // });
+        decryptImageButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new DecryptImageWindow();
+            }
+        });
 
         exitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

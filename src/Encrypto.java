@@ -1,4 +1,8 @@
+import java.io.File;
+import java.io.IOException;
 import java.util.Scanner;
+
+import javax.imageio.ImageIO;
 
 public class Encrypto {
     private static int delay = 5;

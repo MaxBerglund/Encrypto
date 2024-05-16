@@ -3,6 +3,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 class EncryptTextWindow {
+
+    //constructor
     EncryptTextWindow() {
         JFrame frame = new JFrame("Encrypt Message");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -14,7 +16,12 @@ class EncryptTextWindow {
 
         frame.setVisible(true);
     }
-
+    
+    /**
+     * places the component on the main panel
+     * 
+     * @param panel the main panel which components are placed
+     */
     private void placeComponents(JPanel panel) {
         panel.setLayout(null);
 
@@ -48,6 +55,7 @@ class EncryptTextWindow {
         scrollPaneResult.setBounds(10, 190, 450, 150);
         panel.add(scrollPaneResult);
 
+        //encrypt button actionListener
         encryptButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String message = userText.getText();
