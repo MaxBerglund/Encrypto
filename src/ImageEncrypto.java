@@ -50,10 +50,7 @@ public class ImageEncrypto {
         String encryptedHex = converter.binary2Hex(EncryptedString.toString());
         String result = "Picture width: " + width + "\n" + "Picture height: " + height + "\n" + "Length of cipher text: " + encryptedHex.length() + "\n" + "Cipher text: " + encryptedHex;
 
-
-        // return converter.binary2Hex(EncryptedString.toString());
         return result;
-        
     }
 
     public static void main(String[] args) {

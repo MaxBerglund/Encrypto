@@ -86,7 +86,7 @@ class EncryptImageWindow {
                 }
 
                 String encryptedText = ImageEncrypto.encryptImage(filePath, key);
-                resultArea.setText("Encrypted Cipher Text: " + encryptedText);
+                resultArea.setText(encryptedText);
             }
         });
     }
