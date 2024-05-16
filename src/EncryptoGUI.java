@@ -5,9 +5,9 @@ import java.awt.event.ActionListener;
 
 public class EncryptoGUI {
     public static void launch() {
-        JFrame frame = new JFrame("Encrypto v1.0");
+        JFrame frame = new JFrame("Encrypto System v1.0");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(400, 300);
+        frame.setSize(400, 400);
 
         JPanel panel = new JPanel();
         frame.add(panel);
@@ -29,26 +29,44 @@ public class EncryptoGUI {
         gbc.gridy = GridBagConstraints.RELATIVE;
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
-        JButton encryptButton = new JButton("Encrypt");
-        panel.add(encryptButton, gbc);
+        JButton encryptTextButton = new JButton("Encrypt Text");
+        panel.add(encryptTextButton, gbc);
 
-        JButton decryptButton = new JButton("Decrypt");
-        panel.add(decryptButton, gbc);
+        JButton decryptTextButton = new JButton("Decrypt Text");
+        panel.add(decryptTextButton, gbc);
+
+        JButton encryptImageButton = new JButton("Encrypt Image");
+        panel.add(encryptImageButton, gbc);
+
+        JButton decryptImageButton = new JButton("Decrypt Image");
+        panel.add(decryptImageButton, gbc);
 
         JButton exitButton = new JButton("Exit");
         panel.add(exitButton, gbc);
 
-        encryptButton.addActionListener(new ActionListener() { 
+        encryptTextButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new EncryptWindow();
+                new EncryptTextWindow();
             }
         });
 
-        decryptButton.addActionListener(new ActionListener() {
+        decryptTextButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new DecryptWindow();
+                new DecryptTextWindow();
             }
         });
+
+        // encryptImageButton.addActionListener(new ActionListener() {
+        //     public void actionPerformed(ActionEvent e) {
+        //         new EncryptImageWindow();
+        //     }
+        // });
+
+        // decryptImageButton.addActionListener(new ActionListener() {
+        //     public void actionPerformed(ActionEvent e) {
+        //         new DecryptImageWindow();
+        //     }
+        // });
 
         exitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -56,5 +74,8 @@ public class EncryptoGUI {
             }
         });
     }
-    
+
+    public static void main(String[] args) {
+        launch();
+    }
 }

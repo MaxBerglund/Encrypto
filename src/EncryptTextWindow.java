@@ -2,8 +2,8 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-class EncryptWindow {
-    EncryptWindow() {
+class EncryptTextWindow {
+    EncryptTextWindow() {
         JFrame frame = new JFrame("Encrypt Message");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setSize(500, 400);

@@ -2,8 +2,8 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-class DecryptWindow {
-    DecryptWindow() {
+class DecryptTextWindow {
+    DecryptTextWindow() {
         JFrame frame = new JFrame("Decrypt Message");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setSize(500, 400);
