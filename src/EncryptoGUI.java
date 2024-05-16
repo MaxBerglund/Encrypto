@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 public class EncryptoGUI {
     public static void launch() {
-        JFrame frame = new JFrame("Encrypto System v1.0");
+        JFrame frame = new JFrame("Encrypto System v1.1");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(400, 400);
 
